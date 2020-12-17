@@ -15,6 +15,7 @@ get_number_of_cores(){
 
 
 print_load() {
+  local LC_NUMERIC=C
   local num_cores=1
   local output
 
@@ -25,9 +26,6 @@ print_load() {
   esac
 
   output=$(uptime | awk -v num_cores="$num_cores" '{
-    sub(/,$/, "", $(NF-2));
-    sub(/,$/, "", $(NF-1));
-    sub(/,$/, "", $NF);
     printf "%.2f %.2f %.2f", $(NF-2)/num_cores, $(NF-1)/num_cores, $NF/num_cores
   }')
 
