@@ -26,6 +26,8 @@ cpu_interpolation=(
   "\#{gram_bg_color}"
   "\#{gram_fg_color}"
 )
+load_per_core="$(get_tmux_option "@load_per_cpu_core" "false")"
+
 cpu_commands=(
   "#($CURRENT_DIR/scripts/cpu_percentage.sh)"
   "#($CURRENT_DIR/scripts/cpu_icon.sh)"
@@ -35,10 +37,10 @@ cpu_commands=(
   "#($CURRENT_DIR/scripts/gpu_icon.sh)"
   "#($CURRENT_DIR/scripts/gpu_bg_color.sh)"
   "#($CURRENT_DIR/scripts/gpu_fg_color.sh)"
-  "#($CURRENT_DIR/scripts/load.sh)"
-  "#($CURRENT_DIR/scripts/load.sh 1)"
-  "#($CURRENT_DIR/scripts/load.sh 5)"
-  "#($CURRENT_DIR/scripts/load.sh 15)"
+  "#($CURRENT_DIR/scripts/load.sh all $load_per_core)"
+  "#($CURRENT_DIR/scripts/load.sh 1 $load_per_core)"
+  "#($CURRENT_DIR/scripts/load.sh 5 $load_per_core)"
+  "#($CURRENT_DIR/scripts/load.sh 15 $load_per_core)"
   "#($CURRENT_DIR/scripts/ram_percentage.sh)"
   "#($CURRENT_DIR/scripts/ram_icon.sh)"
   "#($CURRENT_DIR/scripts/ram_bg_color.sh)"
